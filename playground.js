@@ -1,13 +1,21 @@
 /**
- * Physics WebXR playground.
- * Objects can be picked using the squeeze button of the left controller (if available) and can be thrown.
- * The left trigger resets the scene, right trigger shoots a bullet straight.
+ * Controller playground
  * 
- * Both hands and the headset have impostors, so you can touch the objects, move them, headbutt them.
- * 
- * Use the boxing area in the center to understand how the hand and head impostors work.
- * 
- * Based on Physics WebXR Playground by Raanan Weber (@RaananW)
+ * This is WIP.  
+ *
+ * What I've figured out so far:
+ *  Around line 160, you'll see:
+ *  xr.input.onControllerAddedObservable.add((controller) => {
+ *      controller.onMotionControllerInitObservable.add((motionController) => {
+ *          if (motionController.handness === 'left') {
+ * This function is called when the controller is loaded (after VR is entered).  
+ * I want to check if it's the right controller.  If so, I'll set the
+ * parent of the lightsaber object to controller.grip.   Alternatively, the inspector reveals
+ * some other objects (search for "controller") that may make good parents.
+ *
+ * Next step: pare this back to something minimal.
+ *    
+ * Based on Physics WebXR Playground by Raanan Weber
  */
 
 var createScene = async function () {
